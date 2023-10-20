@@ -9,7 +9,6 @@ Contexto:
     Dado que acesse a área de login do Saucedemo
 
 
-
     Cenário: Autenticação válida
         Quando  entrar com as credenciais: login "standard_user" 
         E       senha "secret_sauce"
@@ -25,6 +24,11 @@ Contexto:
         E       senha "wrong_sauce"
         Então   deve aparecer uma notificação informando que as credenciais não batem com nenhum usuario do serviço
 
+        Cenário: Autenticação com login em branco
+        Quando  entrar com as credenciais: deixar campo do login em branco
+        E       senha "secret_sauce"
+        Então   deve aparecer uma notificação informando que é necessario entrar com um usuario
+
 
     Esquema do Cenário: Logins inválidos 
         Quando eu digitar o <usuario>
@@ -36,9 +40,3 @@ Contexto:
         | "standard_user"       | "wrong_sauce"     | "Epic sadface: Username and password do not match any user in this service"   |
         | ""                    | "secret_sauce"    | "Epic sadface: Username is required"                                          |
         | "standard_user"       | ""                | "Epic sadface: Password is required"                                          |
-
-        
-    Cenário: Autenticação com login em branco
-        Quando  entrar com as credenciais: deixar campo do login em branco
-        E       senha "secret_sauce"
-        Então   deve aparecer uma notificação informando que é necessario entrar com um usuario
